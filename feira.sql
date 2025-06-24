@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23-Jun-2025 às 21:24
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 8.1.2
+-- Tempo de geração: 24-Jun-2025 às 20:09
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `ods_projeto` (
   `id_ods` int(11) NOT NULL,
   `id_projetos` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -44,7 +44,7 @@ CREATE TABLE `tbl_alunos` (
   `nome` varchar(100) NOT NULL,
   `serie` enum('1','2','3') NOT NULL,
   `curso` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -55,7 +55,7 @@ CREATE TABLE `tbl_alunos` (
 CREATE TABLE `tbl_ods` (
   `id_ods` int(11) NOT NULL,
   `ods` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -67,13 +67,12 @@ CREATE TABLE `tbl_projetos` (
   `id_projetos` int(11) NOT NULL,
   `titulo_projeto` varchar(100) NOT NULL,
   `descricao_projeto` varchar(255) NOT NULL,
-  `ods` varchar(100) NOT NULL,
   `bloco` enum('A','B') NOT NULL,
   `sala` varchar(20) NOT NULL,
   `posicao_projeto` int(11) NOT NULL,
   `stand` varchar(3) NOT NULL,
   `prof_orientador` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -88,7 +87,7 @@ CREATE TABLE `tbl_users` (
   `email` varchar(100) NOT NULL,
   `senha` varchar(255) DEFAULT NULL,
   `data_nasc` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -103,7 +102,7 @@ CREATE TABLE `tb_creditos` (
   `foto_dev` varchar(128) NOT NULL,
   `linkedin_dev` varchar(255) DEFAULT NULL,
   `github_dev` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `tb_creditos`
@@ -162,7 +161,7 @@ CREATE TABLE `tb_feedback` (
   `nota` int(1) NOT NULL,
   `comentario` varchar(400) DEFAULT NULL,
   `data_envio` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -173,7 +172,7 @@ CREATE TABLE `tb_feedback` (
 CREATE TABLE `tb_integrantes` (
   `id_projetos` int(11) NOT NULL,
   `id_aluno` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -188,7 +187,7 @@ CREATE TABLE `tb_votos` (
   `coment_voto` varchar(200) DEFAULT NULL,
   `id_user` int(11) NOT NULL,
   `id_projetos` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tabelas despejadas
