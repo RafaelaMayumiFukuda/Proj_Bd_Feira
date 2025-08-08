@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Ago-2025 às 20:50
+-- Tempo de geração: 28-Jul-2025 às 21:53
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.2
 
@@ -46,15 +46,6 @@ CREATE TABLE `tbl_alunos` (
   `curso` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Extraindo dados da tabela `tbl_alunos`
---
-
-INSERT INTO `tbl_alunos` (`id_aluno`, `rm`, `nome`, `serie`, `curso`) VALUES
-(1, '1001', 'Ana Silva', '', 'Informática'),
-(2, '1002', 'Carlos Mendes', '', 'Química'),
-(3, '1003', 'Beatriz Rocha', '', 'Administração');
-
 -- --------------------------------------------------------
 
 --
@@ -66,29 +57,6 @@ CREATE TABLE `tbl_ods` (
   `ods` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Extraindo dados da tabela `tbl_ods`
---
-
-INSERT INTO `tbl_ods` (`id_ods`, `ods`) VALUES
-(1, 'Erradicação da pobreza'),
-(2, 'Fome zero e agricultura sustentavel'),
-(3, 'Saude e bem-estar'),
-(4, 'Educação de qualidade'),
-(5, 'Igualdade de genero'),
-(6, 'Agua potavel e saneamento'),
-(7, 'Energia limpa e acessivel'),
-(8, 'Trabalho decente e crescimento economico'),
-(9, 'Industria, inovacao e infraestrutura'),
-(10, 'Reducao das desigualdades'),
-(11, 'Cidades e comunidades sustentaveis'),
-(12, 'Consumo e producao responsaeis'),
-(13, 'Acao contra a mudanca global do clima'),
-(14, 'Vida na agua'),
-(15, 'Vida terrestre'),
-(16, 'Paz, justica e instituicoes eficazes'),
-(17, 'Parcerias e meios de implementacao');
-
 -- --------------------------------------------------------
 
 --
@@ -99,8 +67,10 @@ CREATE TABLE `tbl_projetos` (
   `id_projetos` int(11) NOT NULL,
   `titulo_projeto` varchar(100) NOT NULL,
   `descricao_projeto` varchar(255) NOT NULL,
+  `ods` varchar(100) NOT NULL,
   `bloco` enum('A','B') NOT NULL,
   `sala` varchar(20) NOT NULL,
+  `posicao_projeto` int(11) NOT NULL,
   `stand` varchar(3) NOT NULL,
   `prof_orientador` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -109,11 +79,10 @@ CREATE TABLE `tbl_projetos` (
 -- Extraindo dados da tabela `tbl_projetos`
 --
 
-INSERT INTO `tbl_projetos` (`id_projetos`, `titulo_projeto`, `descricao_projeto`, `bloco`, `sala`, `stand`, `prof_orientador`) VALUES
-(1, 'EcoLuz', 'Projeto que transforma luz solar em energia para comunidades.', 'A', '1', '58', 'Professor João'),
-(2, 'AgroTech', 'Sistema inteligente para monitoramento de plantações.', 'B', '2', '52', 'Professora Luana'),
-(3, 'EcoLuz', 'Projeto que transforma luz solar em energia para comunidades.', 'A', '1', '58', 'ProfessorJoao'),
-(4, 'AgroTech', 'Sistema inteligente para monitoramento de plantações.', 'B', '2', '52', 'ProfessoraLuana');
+INSERT INTO `tbl_projetos` (`id_projetos`, `titulo_projeto`, `descricao_projeto`, `ods`, `bloco`, `sala`, `posicao_projeto`, `stand`, `prof_orientador`) VALUES
+(1, 'titulo1', 'projeto1', '1', 'A', '5', 56, '5', 'fulano1'),
+(2, 'titulo2', 'projeto2', '2', 'B', '2', 78, '8', 'fulano2'),
+(3, 'titulo3', 'projeto3', '3', 'A', '7', 34, '3', 'fulano3');
 
 -- --------------------------------------------------------
 
@@ -130,6 +99,15 @@ CREATE TABLE `tbl_users` (
   `data_nasc` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `tbl_users`
+--
+
+INSERT INTO `tbl_users` (`id_users`, `is_admin`, `nome`, `email`, `senha`, `data_nasc`) VALUES
+(1, 0, 'teste1', 'teste1@gmail.com', '12345678', '2025-07-01'),
+(2, 0, 'teste2', 'teste2@gmail.com', '12345678', '2025-07-16'),
+(3, 0, 'teste3', 'teste3@gmail.com', '12345678', '2025-07-10');
+
 -- --------------------------------------------------------
 
 --
@@ -144,51 +122,6 @@ CREATE TABLE `tb_creditos` (
   `linkedin_dev` varchar(255) DEFAULT NULL,
   `github_dev` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `tb_creditos`
---
-
-INSERT INTO `tb_creditos` (`id_dev`, `nome_dev`, `cargo_dev`, `foto_dev`, `linkedin_dev`, `github_dev`) VALUES
-(1, 'Amanda Kaori', 'Front-end', '/imagens', NULL, 'https://github.com/projamandakaori'),
-(2, 'Amanda Rodriguez', 'Banco de Dados', '/imagens', NULL, 'https://github.com/amandszr'),
-(3, 'Ângelo Gabriel', 'Back-end - Team leader', '/imagens', NULL, 'https://github.com/projAngeloAraujo'),
-(4, 'Bryan de Oliveira', 'Banco de dados', '/imagens', NULL, 'https://github.com/BryanOli17'),
-(5, 'Camila Vitoria', 'Front-end', '/imagens', NULL, 'https://github.com/ProjCamilaVitoria'),
-(6, 'Cauã Arthur', 'Front-end', '/imagens', NULL, 'https://github.com/Projcauaramos'),
-(7, 'Cecília Santiago', 'Front-end', '/imagens', NULL, 'https://github.com/ceciliasf'),
-(8, 'Denner Pereira', 'Banco de Dados', '/imagens', NULL, 'https://github.com/Denner106'),
-(9, 'Eduardo de Ataíde', 'Front-end', '/imagens', NULL, 'https://github.com/duduusxz'),
-(10, 'Enzo Móbile', 'Back-end', '/imagens', NULL, 'https://github.com/enzomobile'),
-(11, 'Giovana Pracanico', 'Gestão', '/imagens', NULL, 'https://github.com/projgipracanico'),
-(12, 'Giulia Benedetti', 'Front-end - Team leader', '/imagens', NULL, 'https://github.com/projgioliveira'),
-(13, 'Guilherme Benatte', 'Banco de dados - Team leader', '/imagens', NULL, 'https://github.com/guibenatte'),
-(14, 'Guilherme Solon', 'Back-end', '/imagens', 'https://www.linkedin.com/in/guilherme-solon-6b4a142a9/', 'https://github.com/Solonguitec'),
-(15, 'Gustavo da Rocha', 'Back-end', '/imagens', NULL, 'https://github.com/gustapinheiro'),
-(16, 'Gustavo Rangel', 'Back-end', '/imagens', NULL, 'https://github.com/DEVRangelll'),
-(17, 'Heitor Albuquerque', 'Gestão', '/imagens', NULL, 'https://github.com/projheitorfreitas'),
-(18, 'Iuri Carati', 'Back-end', '/imagens', NULL, 'https://github.com/ToxicDumpster'),
-(19, 'Jean Marcos', 'Back-end', '/imagens', NULL, 'https://github.com/jean666'),
-(20, 'João Xavier', 'Front-end', '/imagens', 'https://www.linkedin.com/in/jo%C3%A3o-vitor-xavier-de-carvalho-469147183/?trk=opento_nprofile_details', 'https://github.com/joaovitorxc'),
-(21, 'Joshua Rodrigues', 'Gestão', '/imagens', NULL, 'https://github.com/JoshRodriguescae'),
-(22, 'Júlia Medeiros', 'Back-end', '/imagens', NULL, 'https://github.com/jumedeirost'),
-(23, 'Katharina Iaussoghi', 'Banco de dados', '/imagens', NULL, 'https://github.com/Katharinasilveira'),
-(24, 'Kevin Rafael', 'Front-end', '/imagens', NULL, 'https://github.com/Kevin2007x'),
-(25, 'Lívia Amaral', 'Front-end - Team leader', '/imagens', 'https://www.linkedin.com/in/l%C3%ADvia-amaral-sales-antonio-675219326/', 'https://github.com/Liviaamaralsales'),
-(26, 'Luara Gouveia', 'Gestão', '/imagens', NULL, 'https://github.com/luarag45'),
-(27, 'Mariana Campello', 'Banco de dados', '/imagens', 'https://www.linkedin.com/in/mariana-cunha-campello-b865b5363/', 'https://github.com/marianacampelo'),
-(28, 'Matheus Pereira', 'Back-end', '/imagens', NULL, 'https://github.com/MatheusSontos'),
-(29, 'Miguel Sommerfeld', 'Back-end - Team leader', '/imagens', 'https://www.linkedin.com/in/miguel-sommerfeld-06491b340/', 'https://github.com/MiguelSommerf'),
-(30, 'Miguel Teodoro', 'Back-end', '/imagens', NULL, 'https://github.com/Miguelteodorodesouza'),
-(31, 'Nicole Pereira', 'Banco de dados', '/imagens', NULL, 'https://github.com/Nicolepereiragregorutti'),
-(32, 'Olavo Alves', 'Front-end', '/imagens', 'https://www.linkedin.com/in/olavo-alves-schiavi-338488353?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', 'https://github.com/Olavoschiavi'),
-(33, 'Rafaela Mayumi', 'Banco de dados - Team leader', '/imagens', 'https://www.linkedin.com/in/rafaela-mayumi-3b4587286?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', 'https://github.com/RafaelaMayumiFukuda'),
-(34, 'Sabrina Bela', 'Back-end', '/imagens', NULL, 'https://github.com/sabrinabela1'),
-(35, 'Sabrina Vitória', 'Front-end', '/imagens', NULL, 'https://github.com/Sabrinavmoura'),
-(36, 'Stefanny Sayuri', 'Front-end', '/imagens', NULL, 'https://github.com/StefannySayuri'),
-(37, 'Stephany dos Santos\r\n', 'Back-end', '/imagens', NULL, 'https://github.com/stephanydossantos16'),
-(38, 'Thomas Coradi', 'Back-end', '/imagens', NULL, 'https://github.com/thomcoradi'),
-(39, 'Welington Fernando', 'Front-end', '/imagens', NULL, 'https://github.com/Welingtonf');
 
 -- --------------------------------------------------------
 
@@ -229,6 +162,15 @@ CREATE TABLE `tb_votos` (
   `id_user` int(11) NOT NULL,
   `id_projetos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `tb_votos`
+--
+
+INSERT INTO `tb_votos` (`id_votos`, `dt_hora_voto`, `valor_voto`, `coment_voto`, `id_user`, `id_projetos`) VALUES
+(1, '2025-07-28 21:51:44', 100, NULL, 2, 3),
+(2, '2025-07-28 21:51:44', 0, 'abcd', 3, 1),
+(3, '2025-07-28 21:51:44', 50, '', 3, 2);
 
 --
 -- Índices para tabelas despejadas
@@ -301,31 +243,31 @@ ALTER TABLE `tb_votos`
 -- AUTO_INCREMENT de tabela `tbl_alunos`
 --
 ALTER TABLE `tbl_alunos`
-  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_ods`
 --
 ALTER TABLE `tbl_ods`
-  MODIFY `id_ods` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id_ods` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_projetos`
 --
 ALTER TABLE `tbl_projetos`
-  MODIFY `id_projetos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_projetos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `tb_creditos`
 --
 ALTER TABLE `tb_creditos`
-  MODIFY `id_dev` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_dev` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tb_feedback`
