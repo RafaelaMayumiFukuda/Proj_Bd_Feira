@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24-Jun-2025 às 20:09
--- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.0.25
+-- Tempo de geração: 05-Ago-2025 às 20:50
+-- Versão do servidor: 10.4.22-MariaDB
+-- versão do PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `ods_projeto` (
   `id_ods` int(11) NOT NULL,
   `id_projetos` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -44,7 +44,16 @@ CREATE TABLE `tbl_alunos` (
   `nome` varchar(100) NOT NULL,
   `serie` enum('1','2','3') NOT NULL,
   `curso` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `tbl_alunos`
+--
+
+INSERT INTO `tbl_alunos` (`id_aluno`, `rm`, `nome`, `serie`, `curso`) VALUES
+(1, '1001', 'Ana Silva', '', 'Informática'),
+(2, '1002', 'Carlos Mendes', '', 'Química'),
+(3, '1003', 'Beatriz Rocha', '', 'Administração');
 
 -- --------------------------------------------------------
 
@@ -55,7 +64,30 @@ CREATE TABLE `tbl_alunos` (
 CREATE TABLE `tbl_ods` (
   `id_ods` int(11) NOT NULL,
   `ods` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `tbl_ods`
+--
+
+INSERT INTO `tbl_ods` (`id_ods`, `ods`) VALUES
+(1, 'Erradicação da pobreza'),
+(2, 'Fome zero e agricultura sustentavel'),
+(3, 'Saude e bem-estar'),
+(4, 'Educação de qualidade'),
+(5, 'Igualdade de genero'),
+(6, 'Agua potavel e saneamento'),
+(7, 'Energia limpa e acessivel'),
+(8, 'Trabalho decente e crescimento economico'),
+(9, 'Industria, inovacao e infraestrutura'),
+(10, 'Reducao das desigualdades'),
+(11, 'Cidades e comunidades sustentaveis'),
+(12, 'Consumo e producao responsaeis'),
+(13, 'Acao contra a mudanca global do clima'),
+(14, 'Vida na agua'),
+(15, 'Vida terrestre'),
+(16, 'Paz, justica e instituicoes eficazes'),
+(17, 'Parcerias e meios de implementacao');
 
 -- --------------------------------------------------------
 
@@ -69,10 +101,19 @@ CREATE TABLE `tbl_projetos` (
   `descricao_projeto` varchar(255) NOT NULL,
   `bloco` enum('A','B') NOT NULL,
   `sala` varchar(20) NOT NULL,
-  `posicao_projeto` int(11) NOT NULL,
   `stand` varchar(3) NOT NULL,
   `prof_orientador` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `tbl_projetos`
+--
+
+INSERT INTO `tbl_projetos` (`id_projetos`, `titulo_projeto`, `descricao_projeto`, `bloco`, `sala`, `stand`, `prof_orientador`) VALUES
+(1, 'EcoLuz', 'Projeto que transforma luz solar em energia para comunidades.', 'A', '1', '58', 'Professor João'),
+(2, 'AgroTech', 'Sistema inteligente para monitoramento de plantações.', 'B', '2', '52', 'Professora Luana'),
+(3, 'EcoLuz', 'Projeto que transforma luz solar em energia para comunidades.', 'A', '1', '58', 'ProfessorJoao'),
+(4, 'AgroTech', 'Sistema inteligente para monitoramento de plantações.', 'B', '2', '52', 'ProfessoraLuana');
 
 -- --------------------------------------------------------
 
@@ -87,7 +128,7 @@ CREATE TABLE `tbl_users` (
   `email` varchar(100) NOT NULL,
   `senha` varchar(255) DEFAULT NULL,
   `data_nasc` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -102,7 +143,7 @@ CREATE TABLE `tb_creditos` (
   `foto_dev` varchar(128) NOT NULL,
   `linkedin_dev` varchar(255) DEFAULT NULL,
   `github_dev` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `tb_creditos`
@@ -161,7 +202,7 @@ CREATE TABLE `tb_feedback` (
   `nota` int(1) NOT NULL,
   `comentario` varchar(400) DEFAULT NULL,
   `data_envio` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -172,7 +213,7 @@ CREATE TABLE `tb_feedback` (
 CREATE TABLE `tb_integrantes` (
   `id_projetos` int(11) NOT NULL,
   `id_aluno` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -187,7 +228,7 @@ CREATE TABLE `tb_votos` (
   `coment_voto` varchar(200) DEFAULT NULL,
   `id_user` int(11) NOT NULL,
   `id_projetos` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tabelas despejadas
@@ -260,25 +301,25 @@ ALTER TABLE `tb_votos`
 -- AUTO_INCREMENT de tabela `tbl_alunos`
 --
 ALTER TABLE `tbl_alunos`
-  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_ods`
 --
 ALTER TABLE `tbl_ods`
-  MODIFY `id_ods` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ods` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_projetos`
 --
 ALTER TABLE `tbl_projetos`
-  MODIFY `id_projetos` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_projetos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `tb_creditos`
@@ -296,7 +337,7 @@ ALTER TABLE `tb_feedback`
 -- AUTO_INCREMENT de tabela `tb_votos`
 --
 ALTER TABLE `tb_votos`
-  MODIFY `id_votos` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_votos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para despejos de tabelas
